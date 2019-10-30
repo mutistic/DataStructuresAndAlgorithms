@@ -4,7 +4,7 @@
 // main主函数
 int main(void){
     // 打印函数
-    printf("Hello World!!!!\n");
+    printf("Hello World，你好 C!!!!\n");
     // 使程序暂停
     system("pause");
     return 0;
