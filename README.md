@@ -469,8 +469,8 @@ R | 实数集 | 包括有理数和无理数(无限不循环小数，如π，e)
 
 输入规模n | 不同函数的渐近增长趋势
 ---|---
-![输入规模1](notes/1.3.4.1-输入规模1) | ![函数的渐近增长趋势1](notes/1.3.4.2-函数的渐近增长趋势1.png)
-![输入规模2](notes/1.3.4.3-输入规模2) | ![函数的渐近增长趋势2](notes/1.3.4.4-函数的渐近增长趋势2.png)
+![输入规模1](notes/1.3.4.1-输入规模1.png) | ![函数的渐近增长趋势1](notes/1.3.4.2-函数的渐近增长趋势1.png)
+![输入规模2](notes/1.3.4.3-输入规模2.png) | ![函数的渐近增长趋势2](notes/1.3.4.4-函数的渐近增长趋势2.png)
 
 ```
   从上面的数据可以分析，当n的值变得非常大的算法，算法f(n^3)的增长趋势远超其他函数，
@@ -649,7 +649,7 @@ public class GaussAlgorithm {
   
   如果T(n)=O(c)，其中c是一个常数，这个因子在大O记法中被丢弃，这记法等价于标准记法：T(n)=O(1)
 ```
-常数阶O(1)的推导过程`Java`：
+常数阶O(1)的推导过程：`ConstantTime.java`
 ```Java
 package chap01.complexity;
 import algorithm.chap01.GaussAlgorithm;
@@ -695,7 +695,7 @@ public class ConstantTime {
 
 ```
   若算法的 T(n) = O(logn)，则称其具有对数时间。
-  由于计算机使用二进制的记数系统，对数常常以2为底(即log2n，有时写作lgn，logn)
+  由于计算机使用二进制的记数系统，对数常常以2为底(即log(2)n，有时写作lgn，logn)
   然而，由对数的换底公式，logan和logbn只有一个常数因子不同，这个因子在大O记法中被丢弃。
   因此记作 O(logn)，而不论对数的底是多少，是对数时间算法的标准记法。
 ```
@@ -704,7 +704,7 @@ public class ConstantTime {
 
   对数时间的算法是非常有效的，因为每增加一个输入，其所需要的额外计算时间会变小。
 ```
-对数阶O(logn)的推导过程`Java`：
+对数阶O(logn)的推导过程：`LogarithmTime.java`
 ```Java
 package chap01.complexity;
 public class LogarithmTime {
@@ -727,7 +727,7 @@ public class LogarithmTime {
     }
     // --- 递归结束条件：字符串chars为空或空串，递归执行条件：字符串chars长度对半取最小整数后大于0
     // --- 随着字符串长度(即问题规模n)的扩大，由于每次输出之前都将字符串对半
-    // --- 则算法f(RightHalfChars)的执行次数的平方也趋近于n，则可推导出算法f(a)的时间复杂度为 O(log2n)，
+    // --- 则算法f(RightHalfChars)的执行次数的平方也趋近于n，则可推导出算法f(a)的时间复杂度为 O(log(2)n)，
     // --- 由于log2n的底为常数2，则在大O阶的推导中被忽略，所以认为：T(n) = O(logn)
   }
 }
@@ -774,15 +774,91 @@ public class LinearTime {
   }
 }
 ```
-
 1.4.3.4、O(nlogn)-线性对数阶：
+> T(n) = O(nlogn)
+
+```
+  若一个算法时间复杂度T(n) = O(nlog n)，则称这个算法具有线性对数时间。
+  因此，从其表达式我们也可以看到，线性对数时间增长得比线性时间要快，
+  但是对于任何含有n，且n的幂指数大于1的多项式时间来说，线性对数时间却增长得慢。
+```
 
 1.4.3.5、O(n^2)-平方阶：
+> T(n) = O(n^2)
+
+平方阶O(n^2)的推导过程：`SquareTime.java`
+```Java
+package chap01.complexity;
+public class SquareTime {
+  public static void main(String[] args) {
+  f_Square(10);
+  }
+  // 算法f(Square)：双重循环打印
+  public static void f_Square(int n) {
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+    System.out.println("i = " + i + "，j = " + j);
+    }
+  }
+  // --- 算法f(Square)执行过程，当外层循环一次时，内层循环n次，
+  // --- 所以当外层循环n次时，算法f(Square)总共执行n*n次，即n^2次
+  // --- 所以算法f(Square)的时间复杂度为 O(n^2)
+  }
+}
+```
 
 1.4.3.6、O(n^3)-立方阶：
+> T(n) = O(n^3)
+
+立方阶O(n^3)的推导过程：`CubeTime.java`
+```Java
+package chap01.complexity;
+public class CubeTime {
+  public static void main(String[] args) {
+  f_Cube(2);
+  }
+  // 算法f(Square)：双重循环打印
+  public static void f_Cube(int n) {
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+    for (int k = 0; k < n; k++) {
+      System.out.println("i = " + i + "，j = " + j + "，k = " + k);
+    }
+    }
+  }
+  // --- 算法f(Cube)执行过程，当第一层循环一次时，第二层循环n次，当第二层循环一次时，第三层循环n次。
+  // --- 所以当第一层循环n次时，算法法f(Cube)总执行次数为n*n*n，即n^3次
+  // --- 所以算法f(Cube)的时间复杂度为 O(n^3)
+  }
+}
+```
 
 1.4.3.7、O(2^n)-指数阶：
+> T(n) = O(2^n)
 
+```
+  若T(n) 是以 2为上界，其中 poly(n) 是n的多项式，则算法被称为指数时间。
+  更正规的讲法是：若T(n) 对某些常量k是由 O(2) 所界定，则算法被称为指数时间
+```
+
+指数阶O(2^n)的推导过程:`IndexTime.java`
+```Java
+package chap01.complexity;
+public class IndexTime {
+  public static void main(String[] args) {
+  f_Index(5, "main", 0);
+  }
+  // 算法f(Index)：指数阶O(2^n)的算法实现例子
+  public static int f_Index(int n, String execName, int execNum) {
+  System.out.println("execName = " + execName + "，execNum = " + execNum + "，n = " + n);
+  if (n <= 1) {
+    return 1;
+  } 
+  return f_Index(n - 1, "a", execNum + 1)
+      + f_Index(n - 1, "b", execNum + 1);
+  }
+}
+```
 
 ### 1-5 空间复杂度
 [:arrow_up:-1-4 时间复杂度](#1-4-时间复杂度) &nbsp;&nbsp;&nbsp;  [:arrow_double_down:-二-线性表](#二-线性表)   
