@@ -11,28 +11,29 @@ import java.util.Scanner;
  * <p> 等差数列求和公式：Sn = (a1+an)n / 2，a1∈N*，n<∈N*。有且仅有当a1=1，公差d=1时，an=n
  */
 public class GaussAlgorithm {
-    // 高斯算法的实现
-    public static long gaussAlgorithm(long n) {
-        return n * (1 + n) / 2;
-    }
 
-    public static void main(String[] args) {
-        System.out.println("\n=================================");
-        Scanner scan = new Scanner(System.in);
-        System.out.println("计算Sn=1+2+3+4+5+···+(n-1)+n的结果，请输入正自然数n的值：");
-        long n = 0;
-        try {
-            n = scan.nextLong();
-        } catch (Exception e) {
-            System.err.println("输入的正自然数n不合法");
-            return;
-        }
-        if (n < 1) {
-            System.err.println("输入的正自然数n必须大于1");
-            return;
-        }
-        long sum = gaussAlgorithm(n);
-        System.out.println("Sn=1+2+3+4+5+···+" + (n - 1) + "+" + n + "=" + sum);
+  // 高斯算法的实现
+  public static long gaussAlgorithm(long n) {
+    return n * (1 + n) / 2;
+  }
+
+  public static void main(String[] args) {
+    System.out.println("\n=================================");
+    Scanner scan = new Scanner(System.in);
+    System.out.println("计算Sn=1+2+3+4+5+···+(n-1)+n的结果，请输入正自然数n的值：");
+    long n = 0;
+    try {
+      n = scan.nextLong();
+    } catch (Exception e) {
+      System.err.println("输入的正自然数n不合法");
+      return;
     }
+    if (n < 1) {
+      System.err.println("输入的正自然数n必须大于1");
+      return;
+    }
+    long sum = gaussAlgorithm(n);
+    System.out.println("Sn=1+2+3+4+5+···+" + (n - 1) + "+" + n + "=" + sum);
+  }
 
 }

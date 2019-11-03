@@ -25,6 +25,28 @@
   * [算法-马踏棋盘算法](#算法-马踏棋盘算法)
   * [图的遍历-广度优先遍历](#图的遍历-广度优先遍历)
 
+
+*  一些约定的描述：  
+
+类型 | 描述 | 举例
+---|---|---
+阶 | 在时间复杂度中：阶等同于时间 | 常数阶等同于常数时间
+n | 表示一个变量、问题规模、输入规模|
+
+* 数学符号：  
+
+类型 | 描述 | 举例
+---|---|---
+^ | 等同于次方 | 如：2^3=2*2*2=8，n^2即n的平方，c^n即c的n次幂
+c | 一般表示为一个常数|1，2，3，4
+N* | 正整数集，等同于N+ |  不包括0的正整数集，如1，2，3
+N | 自然数集(非负整数集) |  包含正整数和零，如0，1，2
+Z | 整数集 | 包括正整数、零、负整数，如-1，0，1
+Q | 有理数集 | 包括整数和分数(两个整数的比)
+R* | 正实数集 | 不包括0的正有理数和正无理数的集合
+R | 实数集 | 包括有理数和无理数(无限不循环小数，如π，e)
+∈ |  表示属于，包含关系 | N+ ∈ N ∈ Z ∈ Q ∈ R+ ∈ R
+
 # 一 基本概念   
 [:arrow_double_up:-Top](#数据结构和算法) &nbsp; &nbsp; &nbsp; [:arrow_double_down:-二-线性表](#二-线性表)
 
@@ -496,14 +518,14 @@ public class GaussAlgorithm {
   System.out.println("计算Sn=1+2+3+4+5+···+(n-1)+n的结果，请输入正整数n的值：");
   long n = 0;
   try {
-    n = scan.nextLong();
+  n = scan.nextLong();
   } catch (Exception e) {
-    System.err.println("输入的正整数n不合法");
-    return;
+  System.err.println("输入的正整数n不合法");
+  return;
   }
   if (n < 1) {
-    System.err.println("输入的正整数n必须大于1");
-    return;
+  System.err.println("输入的正整数n必须大于1");
+  return;
   }
   long sum = gaussAlgorithm(n);
   System.out.println("Sn=1+2+3+4+5+···+" + (n - 1) + "+" + n + "=" + sum);
@@ -516,22 +538,11 @@ public class GaussAlgorithm {
   等差数列是常见数列的一种，可以用AP表示，
   如果一个数列从第二项起，每一项与它的前一项的差等于同一个常数，这个数列就叫做等差数列，
   而这个常数叫做等差数列的公差，公差常用字母d表示，
+  
   等差数列{an}的通项公式为：an=a1+(n-1)d
   前n项和公式为：Sn=n*a1+n(n-1)d/2 或 Sn=n(a1+an)/2，
+  d ∈ R* (正实数)，n ∈ N* (正自然数)
   有且仅有当a1=1，公差d=1时，an=n
-```
-```math
-  \begin{matrix}
-  dim = \begin{cases}
-  a_{n-1} - a_n = d \\
-  n\ \epsilon \ N^* \\
-  d\ \epsilon \ R^* \\
-  \end{cases}
-  \\ \\
-  a_n =  \begin{bmatrix} 1&n \end {bmatrix} \begin{bmatrix} a_0 \\ d \end {bmatrix}= a_0 + dn = a_1 + d(n-1)
-  \\ \\
-  S_n = n\begin{bmatrix} 1&n \end {bmatrix} \begin{bmatrix} 1&1/2 \\ 0 & 1/2 \end {bmatrix} \begin{bmatrix} a_0 \\ d \end {bmatrix} = na_0 + \frac d 2(n + n^2) = \\ \\ \frac {n(2a_0+d+dn)} 2 = \frac {n(a_1 + a_n)} 2
-  \end{matrix}
 ```
 
 ### 1-4 时间复杂度
@@ -623,7 +634,7 @@ public class GaussAlgorithm {
 ```
   1、用常数1取代运行时间中的所有加法常数。
   2、在修改后的运行次数函数中，只保留最高阶项
-    (一般情况下：指数 > 幂数 > 立方 > 平方 > 乘数 > 对数 > 常数)。
+  (一般情况下：指数 > 幂数 > 立方 > 平方 > 乘数 > 对数 > 常数)。
   3、如果最高阶项存在且不是1，则去除这个项相乘的常数。
   
   得到的最后结果就是函数阶(也称大O阶)，也就是这个算法的时间复杂度。
@@ -631,11 +642,6 @@ public class GaussAlgorithm {
 ```
 
 **1.4.3、常见的时间复杂度的分类：**  
-> 一些约定：
-<br/>1、阶等同时间：对数阶=对数时间
-<br/>2、^ 等同于次方：n^2 即n的平方，c^n 即c的n次幂。
-<br/>3、c：一般表示为一个常数。n：表示一个变量或问题规模或输入规模。
-
 > 时间复杂度O(n)可以用函数T(n)的自然特性，在结合大O阶的推导方法可以进行如下分类
 
 1.4.3.1、O(1)-常数时间(常数阶)：
@@ -652,44 +658,44 @@ public class GaussAlgorithm {
   
   如果T(n)=O(c)，其中c是一个常数，这个因子在大O记法中被丢弃，这记法等价于标准记法：T(n)=O(1)
 ```
-`Java`常数阶O(1)的推导过程：
-```
+常数阶O(1)的推导过程`Java`：
+```Java
 package chap01.complexity;
 import algorithm.chap01.GaussAlgorithm;
 public class ConstantTime {
-    public static void main(String[] args) {
-        f_Add();
-        f_ForIndex();
-        f_GaussAlgorithm(4);
+  public static void main(String[] args) {
+    f_Add();
+    f_ForIndex();
+    f_GaussAlgorithm(4);
+  }
+  // 算法f(Add)=计算1+2+3+4的值：
+  public static void f_Add() {
+    int sum = 1;
+    sum += 2;
+    sum += 3;
+    sum += 4;
+    System.out.println("f(Add) = " + sum);
+    // --- 从算法f(Add)看虽然执行了4行代码进行操作，也就是说 T(n) = 4，
+    // --- 但是在推导大O阶时，我们认为常数4操作是算法f(Add)所有加法常数，然后用常数1取代加法常数，
+    // --- 也就是说4被取代成为1，那么可得出算法的时间复杂度为O(1)，记作：T(n) = O(1)
+  }
+  // 算法f(ForIndex)=计算1+2+3+4的值：
+  public static void f_ForIndex() {
+    int sum = 0;
+    for (int i = 1; i <= 4; i++) {
+      sum += i;
     }
-    // 算法f(Add)=计算1+2+3+4的值：
-    public static void f_Add() {
-        int sum = 1;
-        sum += 2;
-        sum += 3;
-        sum += 4;
-        System.out.println("f(Add) = " + sum);
-        // --- 从算法f(Add)看虽然执行了4行代码进行操作，也就是说 T(n) = 4，
-        // --- 但是在推导大O阶时，我们认为常数4操作是算法f(Add)所有加法常数，然后用常数1取代加法常数，
-        // --- 也就是说4被取代成为1，那么可得出算法的时间复杂度为O(1)，记作：T(n) = O(1)
-    }
-    // 算法f(ForIndex)=计算1+2+3+4的值：
-    public static void f_ForIndex() {
-        int sum = 0;
-        for (int i = 1; i <= 4; i++) {
-            sum += i;
-        }
-        System.out.println("f(ForIndex) = " + sum);
-        // --- 从算法f(ForIndex)执行来看，虽然使用的fori循环操作，
-        // --- 但是已知问题规模n是一个固定的常数4，循环总共执行次数为常数4，
-        // --- 所以可认为时间复杂度为O(1)，记作：T(n) = O(1)
-    }
-    // 算法f(高斯算法，Gauss Algorithm)=计算 1+2+3+4+...+(n-1)+n的值：
-    public static void f_GaussAlgorithm(int n) {
-        long sum = GaussAlgorithm.gaussAlgorithm(n); // n * (1 + n) / 2;
-        System.out.println("f(高斯算法，Gauss Algorithm) = " + sum);
-        // --- 从高斯算法计算来看执行次数问题规模n无关，始终是1次，所以认为 T(n) = O(1)
-    }
+    System.out.println("f(ForIndex) = " + sum);
+    // --- 从算法f(ForIndex)执行来看，虽然使用的fori循环操作，
+    // --- 但是已知问题规模n是一个固定的常数4，循环总共执行次数为常数4，
+    // --- 所以可认为时间复杂度为O(1)，记作：T(n) = O(1)
+  }
+  // 算法f(高斯算法，Gauss Algorithm)=计算 1+2+3+4+...+(n-1)+n的值：
+  public static void f_GaussAlgorithm(int n) {
+    long sum = GaussAlgorithm.gaussAlgorithm(n); // n * (1 + n) / 2;
+    System.out.println("f(高斯算法，Gauss Algorithm) = " + sum);
+    // --- 从高斯算法计算来看执行次数问题规模n无关，始终是1次，所以认为 T(n) = O(1)
+  }
 }
 ```
 
@@ -707,42 +713,76 @@ public class ConstantTime {
 
   对数时间的算法是非常有效的，因为每增加一个输入，其所需要的额外计算时间会变小。
 ```
-`Java`对数阶O(logn)的推导过程：
-```
+对数阶O(logn)的推导过程`Java`：
+```Java
 package chap01.complexity;
-
-/**
- * 对数阶O(logn)的推导过程
- * <p> 算法时间复杂度
- */
 public class LogarithmTime {
-    public static void main(String[] args) {
-        f_RightHalfChars("ABCDEFGHIJKLMNOPKRSTUVWXYZ", 1);
+  public static void main(String[] args) {
+    f_RightHalfChars("ABCDEFGHIJKLMNOPKRSTUVWXYZ", 1);
+  }
+
+  // 算法f(RightHalfChars)=递归地将字符串对半并且输出右边字符
+  public static void f_RightHalfChars(String chars, int execNum) {
+    if (chars == null || chars.length() == 0) {
+      return;
     }
 
-    // 算法f(RightHalfChars)=递归地将字符串对半并且输出右边字符
-    public static void f_RightHalfChars(String chars, int execNum) {
-        if (chars == null || chars.length() == 0) {
-            return;
-        }
-
-        String rightChars = "";
-        int rightLength = chars.length() / 2;
-        if (rightLength > 0) {
-            rightChars = chars.substring(rightLength, chars.length());
-            System.out.println("第" + execNum + "次执行输出结果：" + rightChars);
-            f_RightHalfChars(rightChars, execNum + 1);
-        }
-        // --- 递归结束条件：字符串chars为空或空串，递归执行条件：字符串chars长度对半取最小整数后大于0
-        // --- 随着字符串长度(即问题规模n)的扩大，由于每次输出之前都将字符串对半
-        // --- 则算法f(RightHalfChars)的执行次数的平方也趋近于n，则可推导出算法f(a)的时间复杂度为 O(log2n)，
-        // --- 由于log2n的底为常数2，则在大O阶的推导中被忽略，所以认为：T(n) = O(logn)
+    String rightChars = "";
+    int rightLength = chars.length() / 2;
+    if (rightLength > 0) {
+      rightChars = chars.substring(rightLength, chars.length());
+      System.out.println("第" + execNum + "次执行输出结果：" + rightChars);
+      f_RightHalfChars(rightChars, execNum + 1);
     }
+    // --- 递归结束条件：字符串chars为空或空串，递归执行条件：字符串chars长度对半取最小整数后大于0
+    // --- 随着字符串长度(即问题规模n)的扩大，由于每次输出之前都将字符串对半
+    // --- 则算法f(RightHalfChars)的执行次数的平方也趋近于n，则可推导出算法f(a)的时间复杂度为 O(log2n)，
+    // --- 由于log2n的底为常数2，则在大O阶的推导中被忽略，所以认为：T(n) = O(logn)
+  }
 }
 ```
 
+1.4.3.3、O(n)-线性阶：
+> T(n) = O(N)
 
-1.4.3.3、O(n)-线数阶：
+```
+  如果一个算法的时间复杂度为O(n)，则称这个算法具有线性时间，或O(n)时间。
+  
+  一般含有非嵌套循环(即单层循环)涉及线性阶，线性阶就是随着问题规模n的扩大，对应计算次数呈直线增长。
+  
+  在不同算法中，如果算法中的循环都是非嵌套循环，则在时间频度不相同的情况下，时间复杂度相同，
+  比如算法T(n)=f(O(2n))与算法T(n)=f(O(4n))的时间频度不同，但是时间复杂度相同，都是线性阶O(n)，
+  这是因为推导时间复杂度时，只保留高阶项，常数项会被替换成1，即T(n)=O(n)
+```
+线性阶O(n)的推导过程：`LinearTime.java`
+```Java
+package chap01.complexity;
+import java.util.Random;
+public class LinearTime {
+  public static void main(String[] args) {
+    f_TwoForSum(new Random().nextInt(1000));
+  }
+  // 算法f(ForSum)=循环计算一次1+2+3+...+(n-1)+n的值
+  public static void f_TwoForSum(int n) {
+    System.out.println("问题规模n=" + n);
+    long sum = 0;
+    for (int i = 1; i < n; i++) {
+      sum += i;
+    }
+    System.out.println("算法f(TwoForSum)第一次循环计算1+2+3+...+(n-1)+n的值=" + sum);
+    sum = 0;
+    for (int i = 1; i < n; i++) {
+      sum += i;
+    }
+    System.out.println("算法f(TwoForSum)第二次循环计算1+2+3+...+(n-1)+n的值=" + sum);
+
+    // --- 随着问题规模n的增大，一次循环计算的次数也为n，算法f(TwoForSum)总共执行了两次循环，
+    // --- 所以算法f(TwoForSum)的总执行时间为 O(f(2n))，我们在推导算法的时间复杂度时，
+    // --- 会将保留高项阶，将常数用1替换，也就是n会被保留，2会被1替换
+    // --- 所以算法f(TwoForSum)的时间复杂度 T(n) = O(n)，即线性阶
+  }
+}
+```
 
 1.4.3.4、O(nlogn)-线性对数阶：
 
